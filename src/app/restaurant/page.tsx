@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import NavigationTabs from '../../component/restaurant/navigationTabs';
+import { NavigationTabs } from '@/component/restaurant/navigation';
+import Banner from './banner';
 import Overview from './tab/overview';
 import Menu from './tab/menu';
 import Story from './tab/story';
@@ -33,19 +34,12 @@ export default function RestaurantIndex() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Main Container - Tất cả thẳng hàng */}
+      {/* Main Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        {/* Header */}
-        <div className="bg-white shadow-sm rounded-2xl mb-6">
-          <div className="py-6 px-6">
-            <h1 className="text-3xl font-bold text-gray-900">
-              Tên Nhà Hàng
-            </h1>
-            <p className="mt-2 text-gray-600">
-              Khám phá hương vị đặc sắc của ẩm thực Việt Nam
-            </p>
-          </div>
+        {/* Banner Section */}
+        <div className="mb-6">
+          <Banner onNavigateToContact={() => setActiveTab('contact')} />
         </div>
 
         {/* Navigation Tabs */}

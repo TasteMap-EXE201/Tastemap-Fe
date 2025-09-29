@@ -1,4 +1,6 @@
+import RecentActivities from '@/component/restaurant/recentActivities';
 import React from 'react';
+import { Plus } from 'lucide-react';
 
 export default function Article() {
   const articles = [
@@ -22,41 +24,24 @@ export default function Article() {
     }
   ];
 
+  const handleAddArticle = () => {
+    // Navigate to add article page
+    window.location.href = '/restaurant/add-article';
+  };
+
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Bài viết</h2>
-      
-      <div className="space-y-6">
-        {articles.map((article, index) => (
-          <div key={index} className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
-            <div className="flex justify-between items-start mb-3">
-              <h3 className="text-xl font-semibold text-gray-800 hover:text-blue-600 cursor-pointer">
-                {article.title}
-              </h3>
-              <span className="text-sm text-gray-500 whitespace-nowrap ml-4">
-                {article.readTime}
-              </span>
-            </div>
-            
-            <p className="text-gray-600 mb-4 leading-relaxed">
-              {article.summary}
-            </p>
-            
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-gray-500">{article.date}</span>
-              <button className="text-blue-600 hover:text-blue-800 font-medium text-sm">
-                Đọc thêm →
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-      
-      <div className="mt-8 text-center">
-        <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-          Xem tất cả bài viết
+    <div className="space-y-6 p-8">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-center flex-1">Bài viết của quán</h2>
+        <button
+          onClick={handleAddArticle}
+          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          <Plus className="w-4 h-4" />
+          <span>Viết bài</span>
         </button>
       </div>
+      <RecentActivities />
     </div>
   );
 }

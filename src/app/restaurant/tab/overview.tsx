@@ -1,5 +1,5 @@
 import React from 'react';
-import StatCard from '../../../component/restaurant/StatCard';
+import { StatCard } from '@/component/restaurant/cards';
 import RecentActivities from '../../../component/restaurant/recentActivities';
 
 export default function Overview() {
@@ -44,9 +44,13 @@ export default function Overview() {
           textColor="text-purple-100"
         />
       </div>
-
-      {/* Recent Activities Section */}
+<div className='p-8'>
+<h2 className="text-xl font-bold text-gray-900 mb-4">
+        Hoạt động gần đây
+      </h2>
       <RecentActivities />
+</div>
+       
     </div>
   );
 }

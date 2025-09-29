@@ -1,58 +1,54 @@
 import React from 'react';
+import { StorySection, TimelineItem } from '../../../component/restaurant/sections';
 
 export default function Story() {
+  const timelineData = [
+    {
+      year: '1995',
+      description: 'Quán được thành lập bởi ông Nguyễn Văn Tâm, bắt đầu từ một xe đẩy nhỏ trên vỉa hè Sài Gòn.'
+    },
+    {
+      year: '2000',
+      description: 'Mở rộng thành quán ăn cố định đầu tiên với không gian nhỏ nhưng ấm cúng.'
+    },
+    {
+      year: '2010',
+      description: 'Nâng cấp cơ sở vật chất, mở rộng thực đơn và cải thiện chất lượng dịch vụ.'
+    },
+    {
+      year: '2020',
+      description: 'Ứng dụng công nghệ trong quản lý và phục vụ, mở rộng dịch vụ giao hàng.'
+    },
+    {
+      year: '2024',
+      description: 'Trở thành một trong những địa chỉ cơm tấm nổi tiếng và được yêu thích nhất Sài Gòn.'
+    }
+  ];
+
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Câu chuyện nhà hàng</h2>
-      
-      <div className="space-y-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-xl font-semibold mb-4">Lịch sử hình thành</h3>
-          <p className="text-gray-700 leading-relaxed">
-            [Thêm câu chuyện về lịch sử hình thành nhà hàng, từ những ngày đầu bắt đầu, 
-            những khó khăn, thử thách và cách nhà hàng vượt qua để trở thành như ngày hôm nay...]
-          </p>
-        </div>
-        
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-xl font-semibold mb-4">Triết lý kinh doanh</h3>
-          <p className="text-gray-700 leading-relaxed">
-            [Chia sẻ về triết lý, tầm nhìn của nhà hàng, cam kết về chất lượng, 
-            dịch vụ và trải nghiệm mà nhà hàng muốn mang đến cho khách hàng...]
-          </p>
-        </div>
-        
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-xl font-semibold mb-4">Đội ngũ</h3>
-          <p className="text-gray-700 leading-relaxed">
-            [Giới thiệu về đội ngũ nhân viên, đầu bếp, những người đã góp phần 
-            tạo nên thành công của nhà hàng...]
-          </p>
-        </div>
-        
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-xl font-semibold mb-4">Hành trình phát triển</h3>
-          <div className="space-y-3">
-            <div className="flex items-start space-x-3">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-              <div>
-                <p className="font-medium">2020 - Thành lập</p>
-                <p className="text-gray-600 text-sm">Nhà hàng được thành lập với quy mô nhỏ</p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-              <div>
-                <p className="font-medium">2021 - Mở rộng</p>
-                <p className="text-gray-600 text-sm">Mở rộng không gian và đa dạng hóa thực đơn</p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-3">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-              <div>
-                <p className="font-medium">2023 - Hiện tại</p>
-                <p className="text-gray-600 text-sm">Trở thành một trong những nhà hàng được yêu thích</p>
-              </div>
+    <div className="p-8">
+      <h2 className="text-2xl font-bold text-gray-900">Câu chuyện & lịch sử quán</h2>
+      <div className="mx-auto">
+        <div className="bg-white rounded-lg p-8">
+          <div className="mb-8">
+            <StorySection
+              title="Câu chuyện thành lập"
+              subtitle="Thành lập năm 1995"
+              content="Quán Cơm Tấm Sài Gòn được thành lập bởi ông Nguyễn Văn Tâm từ năm 1995. Bắt đầu từ một xe đẩy nhỏ trên vỉa hè, quán đã phát triển thành một trong những địa chỉ cơm tấm nổi tiếng nhất Sài Gòn. Với hương vị truyền thống được giữ nguyên qua nhiều thế hệ, quán luôn là điểm đến của nhiều thực khách yêu thích món ăn đặc sắc. Từ những ngày đầu khó khăn với chỉ vài món ăn đơn giản, quán đã không ngừng cải tiến và phát triển, nhưng vẫn giữ được bản sắc và hương vị truyền thống làm nên thương hiệu."
+              icon="📜"
+            />
+          </div>
+
+          <div>
+            <h3 className="text-gray-900 font-bold text-xl mb-4">Các mốc quan trọng</h3>
+            <div className="space-y-4">
+              {timelineData.map((item, index) => (
+                <TimelineItem
+                  key={index}
+                  year={item.year}
+                  description={item.description}
+                />
+              ))}
             </div>
           </div>
         </div>

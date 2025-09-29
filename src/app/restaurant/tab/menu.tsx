@@ -1,57 +1,78 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
+import { Plus } from 'lucide-react';
+import { MenuCard } from '@/component/restaurant/cards';
 
 export default function Menu() {
-  const menuCategories = [
-    {
-      name: 'Món khai vị',
-      items: [
-        { name: 'Gỏi cuốn', price: '25,000đ', description: 'Tôm, thịt, rau thơm' },
-        { name: 'Chả cá', price: '35,000đ', description: 'Chả cá truyền thống' }
-      ]
+  const router = useRouter();
+  
+  const menuItems = [
+    { 
+      name: 'Gỏi cuốn tôm thịt', 
+      price: '25,000đ', 
+      imageSrc: '/restaurant/Tabs/Menu/1.jpg'
     },
-    {
-      name: 'Món chính',
-      items: [
-        { name: 'Phở bò', price: '45,000đ', description: 'Phở bò tái, chín' },
-        { name: 'Cơm tấm', price: '40,000đ', description: 'Sườn nướng, chả trứng' }
-      ]
+    { 
+      name: 'Chả cá Lã Vọng', 
+      price: '35,000đ', 
+      imageSrc: '/restaurant/Tabs/Menu/2.jpg'
     },
-    {
-      name: 'Đồ uống',
-      items: [
-        { name: 'Cà phê sữa đá', price: '15,000đ', description: 'Cà phê truyền thống' },
-        { name: 'Trà đá', price: '5,000đ', description: 'Trà đá miễn phí' }
-      ]
-    }
+    { 
+      name: 'Nem nướng Nha Trang', 
+      price: '30,000đ', 
+      imageSrc: '/restaurant/Tabs/Menu/3.jpg'
+    },
+    { 
+      name: 'Bánh khọt Vũng Tàu', 
+      price: '28,000đ', 
+      imageSrc: '/restaurant/Tabs/Menu/4.jpg'
+    },
   ];
 
+  const handleEdit = (itemName: string) => {
+    console.log('Edit item:', itemName);
+  };
+
+  const handleDelete = (itemName: string) => {
+    console.log('Delete item:', itemName);
+  };
+
+  const handleAddMenuItem = () => {
+    router.push('/restaurant/add-menu-item');
+  };
+
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Thực đơn</h2>
-      
-      {menuCategories.map((category, categoryIndex) => (
-        <div key={categoryIndex} className="mb-8">
-          <h3 className="text-xl font-semibold mb-4 text-blue-600">{category.name}</h3>
-          <div className="grid gap-4">
-            {category.items.map((item, itemIndex) => (
-              <div key={itemIndex} className="bg-white rounded-lg shadow p-4 flex justify-between items-start">
-                <div className="flex-1">
-                  <h4 className="font-medium text-lg">{item.name}</h4>
-                  <p className="text-gray-600 text-sm mt-1">{item.description}</p>
-                </div>
-                <div className="text-right">
-                  <span className="text-lg font-semibold text-green-600">{item.price}</span>
-                </div>
-              </div>
+    <div className="bg-gray-50 min-h-screen p-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="bg-white rounded-lg shadow-sm p-8">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-gray-900 text-center flex-1">
+              Thực đơn
+            </h2>
+            <button
+              onClick={handleAddMenuItem}
+              className="flex items-center space-x-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Thêm món</span>
+            </button>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {menuItems.map((item, index) => (
+              <MenuCard
+                key={index}
+                name={item.name}
+                price={item.price}
+                imageSrc={item.imageSrc}
+                onEdit={() => handleEdit(item.name)}
+                onDelete={() => handleDelete(item.name)}
+              />
             ))}
           </div>
         </div>
-      ))}
-      
-      <div className="mt-8 p-4 bg-yellow-50 rounded-lg">
-        <p className="text-sm text-gray-600">
-          <strong>Lưu ý:</strong> Giá có thể thay đổi. Vui lòng liên hệ nhà hàng để có thông tin giá chính xác nhất.
-        </p>
       </div>
     </div>
   );
