@@ -1,5 +1,5 @@
-import React from 'react';
-import { Flame } from 'lucide-react';
+import React from "react";
+import { Flame } from "lucide-react";
 
 interface SpicyLevel {
   id: string;
@@ -12,27 +12,30 @@ interface SpicyLevelSelectorProps {
   value: string;
   onChange: (value: string) => void;
   className?: string;
+  required?: boolean;
 }
 
 const spicyLevels: SpicyLevel[] = [
-  { id: 'none', label: 'Không cay', level: 0 },
-  { id: 'mild', label: 'Cay nhẹ', level: 1 },
-  { id: 'medium', label: 'Cay vừa', level: 2 },
-  { id: 'hot', label: 'Cay nồng', level: 3 },
+  { id: "none", label: "Không cay", level: 0 },
+  { id: "mild", label: "Cay nhẹ", level: 1 },
+  { id: "medium", label: "Cay vừa", level: 2 },
+  { id: "hot", label: "Cay nồng", level: 3 },
 ];
 
 export const SpicyLevelSelector: React.FC<SpicyLevelSelectorProps> = ({
   label,
   value,
   onChange,
-  className = '',
+  className = "",
+  required = false,
 }) => {
   return (
     <div className={`mb-6 ${className}`}>
       <label className="block text-sm font-medium text-gray-700 mb-3">
         {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
-      
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {spicyLevels.map((level) => (
           <button
@@ -44,8 +47,8 @@ export const SpicyLevelSelector: React.FC<SpicyLevelSelectorProps> = ({
               border-2 transition-all duration-200
               ${
                 value === level.id
-                  ? 'border-orange-500 bg-orange-50 text-orange-600'
-                  : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                  ? "border-orange-500 bg-orange-50 text-orange-600"
+                  : "border-gray-200 bg-white text-gray-600 hover:border-gray-300"
               }
             `}
           >
@@ -54,7 +57,7 @@ export const SpicyLevelSelector: React.FC<SpicyLevelSelectorProps> = ({
                 <Flame
                   key={i}
                   className={`w-3 h-3 ${
-                    value === level.id ? 'text-red-500' : 'text-gray-400'
+                    value === level.id ? "text-red-500" : "text-gray-400"
                   }`}
                 />
               ))}

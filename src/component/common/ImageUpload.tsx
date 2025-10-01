@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Upload, X } from 'lucide-react';
+import React, { useRef } from "react";
+import { Upload, X } from "lucide-react";
 
 interface ImageUploadProps {
   label: string;
@@ -9,6 +9,7 @@ interface ImageUploadProps {
   maxSize?: number; // in MB
   acceptedTypes?: string[];
   className?: string;
+  required?: boolean;
 }
 
 export const ImageUpload: React.FC<ImageUploadProps> = ({
@@ -17,18 +18,21 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
   onImagesChange,
   maxFiles = 5,
   maxSize = 5,
-  acceptedTypes = ['image/png', 'image/jpeg', 'image/jpg'],
-  className = '',
+  acceptedTypes = ["image/png", "image/jpeg", "image/jpg"],
+  className = "",
+  required = false,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
-    
+
     // Validate files
-    const validFiles = files.filter(file => {
+    const validFiles = files.filter((file) => {
       if (!acceptedTypes.includes(file.type)) {
-        alert(`File ${file.name} không đúng định dạng. Chỉ chấp nhận PNG, JPG.`);
+        alert(
+          `File ${file.name} không đúng định dạng. Chỉ chấp nhận PNG, JPG.`
+        );
         return false;
       }
       if (file.size > maxSize * 1024 * 1024) {
@@ -53,7 +57,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     const input = fileInputRef.current;
     if (input) {
       const dt = new DataTransfer();
-      files.forEach(file => dt.items.add(file));
+      files.forEach((file) => dt.items.add(file));
       input.files = dt.files;
       handleFileSelect({ target: input } as any);
     }
@@ -67,8 +71,9 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     <div className={`mb-6 ${className}`}>
       <label className="block text-sm font-medium text-gray-700 mb-2">
         {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
-      
+
       {/* Upload area */}
       <div
         className="
@@ -94,7 +99,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
         ref={fileInputRef}
         type="file"
         multiple
-        accept={acceptedTypes.join(',')}
+        accept={acceptedTypes.join(",")}
         onChange={handleFileSelect}
         className="hidden"
       />

@@ -1,5 +1,13 @@
-import React, { useState, useRef } from 'react';
-import { X, Image, Utensils, Home, Headphones, Calendar, ChevronDown } from 'lucide-react';
+import React, { useState, useRef } from "react";
+import {
+  X,
+  Image,
+  Utensils,
+  Home,
+  Headphones,
+  Calendar,
+  ChevronDown,
+} from "lucide-react";
 
 interface AddImageModalProps {
   isOpen: boolean;
@@ -18,30 +26,39 @@ interface ImageUploadData {
 }
 
 const categories = [
-  { id: 'food', label: 'Món ăn', icon: Utensils, color: 'text-orange-600' },
-  { id: 'interior', label: 'Nội thất', icon: Home, color: 'text-blue-600' },
-  { id: 'service', label: 'Dịch vụ', icon: Headphones, color: 'text-green-600' },
-  { id: 'event', label: 'Sự kiện', icon: Calendar, color: 'text-purple-600' },
+  { id: "food", label: "Món ăn", icon: Utensils, color: "text-orange-600" },
+  { id: "interior", label: "Nội thất", icon: Home, color: "text-blue-600" },
+  {
+    id: "service",
+    label: "Dịch vụ",
+    icon: Headphones,
+    color: "text-green-600",
+  },
+  { id: "event", label: "Sự kiện", icon: Calendar, color: "text-purple-600" },
 ];
 
 const priorityOptions = [
-  { value: 'low', label: 'Thấp' },
-  { value: 'normal', label: 'Bình thường' },
-  { value: 'high', label: 'Cao' },
+  { value: "low", label: "Thấp" },
+  { value: "normal", label: "Bình thường" },
+  { value: "high", label: "Cao" },
 ];
 
 const privacyOptions = [
-  { value: 'public', label: 'Công khai' },
-  { value: 'private', label: 'Riêng tư' },
-  { value: 'friends', label: 'Bạn bè' },
+  { value: "public", label: "Công khai" },
+  { value: "private", label: "Riêng tư" },
+  { value: "friends", label: "Bạn bè" },
 ];
 
-export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageModalProps) {
+export default function AddImageModal({
+  isOpen,
+  onClose,
+  onSubmit,
+}: AddImageModalProps) {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState('food');
-  const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState('normal');
-  const [privacy, setPrivacy] = useState('public');
+  const [selectedCategory, setSelectedCategory] = useState("food");
+  const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState("normal");
+  const [privacy, setPrivacy] = useState("public");
   const [addWatermark, setAddWatermark] = useState(false);
   const [autoTag, setAutoTag] = useState(true);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -51,8 +68,10 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
 
   const handleFileSelect = (files: FileList | null) => {
     if (files) {
-      const newFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
-      setSelectedFiles(prev => [...prev, ...newFiles]);
+      const newFiles = Array.from(files).filter((file) =>
+        file.type.startsWith("image/")
+      );
+      setSelectedFiles((prev) => [...prev, ...newFiles]);
     }
   };
 
@@ -88,10 +107,10 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
 
   const handleClose = () => {
     setSelectedFiles([]);
-    setSelectedCategory('food');
-    setDescription('');
-    setPriority('normal');
-    setPrivacy('public');
+    setSelectedCategory("food");
+    setDescription("");
+    setPriority("normal");
+    setPrivacy("public");
     setAddWatermark(false);
     setAutoTag(true);
     setIsDragOver(false);
@@ -99,23 +118,28 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
   };
 
   const removeFile = (index: number) => {
-    setSelectedFiles(prev => prev.filter((_, i) => i !== index));
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
     <>
       {/* Overlay */}
-      <div 
+      <div
         className="fixed inset-0 bg-gray-700 opacity-50 backdrop-filter backdrop-blur-sm z-40"
         onClick={handleClose}
       />
-      
+
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none p-4">
         <div className="relative bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto pointer-events-auto">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-black">Thêm ảnh mới</h2>
+            <h2 className="text-xl font-bold text-black">
+              Thêm ảnh mới{" "}
+              <span className="text-red-500" aria-hidden="true">
+                *
+              </span>
+            </h2>
             <button
               onClick={handleClose}
               className="text-gray-400 hover:text-gray-600 transition-colors"
@@ -129,8 +153,14 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
             <div
               className={`
                 relative border-2 border-dashed rounded-lg p-8 text-center transition-colors
-                ${isDragOver ? 'border-blue-400 bg-blue-50' : 'border-gray-300 bg-gray-50'}
-                ${selectedFiles.length > 0 ? 'border-green-400 bg-green-50' : ''}
+                ${
+                  isDragOver
+                    ? "border-blue-400 bg-blue-50"
+                    : "border-gray-300 bg-gray-50"
+                }
+                ${
+                  selectedFiles.length > 0 ? "border-green-400 bg-green-50" : ""
+                }
               `}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
@@ -145,7 +175,7 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
                 className="hidden"
                 onChange={(e) => handleFileSelect(e.target.files)}
               />
-              
+
               <div className="space-y-3">
                 <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
                   <Image className="w-8 h-8 text-green-600" />
@@ -162,7 +192,9 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
             {/* Selected Files Preview */}
             {selectedFiles.length > 0 && (
               <div className="space-y-3">
-                <h3 className="font-medium text-gray-900">Ảnh đã chọn ({selectedFiles.length})</h3>
+                <h3 className="font-medium text-gray-900">
+                  Ảnh đã chọn ({selectedFiles.length})
+                </h3>
                 <div className="grid grid-cols-3 gap-3">
                   {selectedFiles.map((file, index) => (
                     <div key={index} className="relative group">
@@ -185,7 +217,12 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
 
             {/* Category Selection */}
             <div className="space-y-3">
-              <h3 className="font-medium text-gray-900">Chọn danh mục ảnh</h3>
+              <h3 className="font-medium text-gray-900">
+                Chọn danh mục ảnh{" "}
+                <span className="text-red-500" aria-hidden="true">
+                  *
+                </span>
+              </h3>
               <div className="grid grid-cols-4 gap-3">
                 {categories.map((category) => {
                   const IconComponent = category.icon;
@@ -195,14 +232,19 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
                       onClick={() => setSelectedCategory(category.id)}
                       className={`
                         p-3 rounded-lg border-2 transition-all text-center
-                        ${selectedCategory === category.id 
-                          ? 'border-blue-500 bg-blue-50' 
-                          : 'border-gray-200 bg-white hover:bg-gray-50'
+                        ${
+                          selectedCategory === category.id
+                            ? "border-blue-500 bg-blue-50"
+                            : "border-gray-200 bg-white hover:bg-gray-50"
                         }
                       `}
                     >
-                      <IconComponent className={`w-6 h-6 mx-auto mb-2 ${category.color}`} />
-                      <span className="text-sm font-medium text-black">{category.label}</span>
+                      <IconComponent
+                        className={`w-6 h-6 mx-auto mb-2 ${category.color}`}
+                      />
+                      <span className="text-sm font-medium text-black">
+                        {category.label}
+                      </span>
                     </button>
                   );
                 })}
@@ -211,8 +253,13 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
 
             {/* Settings */}
             <div className="space-y-4">
-              <h3 className="font-bold text-black">Cài đặt đăng ảnh</h3>
-              
+              <h3 className="font-bold text-black">
+                Cài đặt đăng ảnh{" "}
+                <span className="text-red-500" aria-hidden="true">
+                  *
+                </span>
+              </h3>
+
               {/* Description */}
               <div>
                 <textarea
@@ -227,7 +274,10 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Độ ưu tiên hiển thị
+                    Độ ưu tiên hiển thị{" "}
+                    <span className="text-red-500" aria-hidden="true">
+                      *
+                    </span>
                   </label>
                   <div className="relative">
                     <select
@@ -235,7 +285,7 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
                       onChange={(e) => setPriority(e.target.value)}
                       className="w-full p-3 border border-gray-300 rounded-lg appearance-none bg-white text-black"
                     >
-                      {priorityOptions.map(option => (
+                      {priorityOptions.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -247,7 +297,10 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Quyền riêng tư
+                    Quyền riêng tư{" "}
+                    <span className="text-red-500" aria-hidden="true">
+                      *
+                    </span>
                   </label>
                   <div className="relative">
                     <select
@@ -255,7 +308,7 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
                       onChange={(e) => setPrivacy(e.target.value)}
                       className="w-full p-3 border border-gray-300 rounded-lg appearance-none bg-white text-black"
                     >
-                      {privacyOptions.map(option => (
+                      {privacyOptions.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -275,7 +328,9 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
                     onChange={(e) => setAddWatermark(e.target.checked)}
                     className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <span className="text-sm text-gray-700">Thêm watermark tên quán vào ảnh</span>
+                  <span className="text-sm text-gray-700">
+                    Thêm watermark tên quán vào ảnh
+                  </span>
                 </label>
 
                 <label className="flex items-center space-x-3">
@@ -285,7 +340,9 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
                     onChange={(e) => setAutoTag(e.target.checked)}
                     className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <span className="text-sm text-gray-700">Tự động gắn tag địa điểm</span>
+                  <span className="text-sm text-gray-700">
+                    Tự động gắn tag địa điểm
+                  </span>
                 </label>
               </div>
             </div>
@@ -299,15 +356,16 @@ export default function AddImageModal({ isOpen, onClose, onSubmit }: AddImageMod
             >
               Hủy bỏ
             </button>
-            
+
             <button
               onClick={handleSubmit}
               disabled={selectedFiles.length === 0}
               className={`
                 px-6 py-2 rounded-lg font-medium transition-colors
-                ${selectedFiles.length > 0
-                  ? 'bg-blue-600 text-white hover:bg-blue-700'
-                  : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                ${
+                  selectedFiles.length > 0
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-gray-200 text-gray-500 cursor-not-allowed"
                 }
               `}
             >
