@@ -10,3 +10,4 @@ export { SpicyLevelSelector } from './SpicyLevelSelector';
 export { TagSelector } from './TagSelector';
 export { SuccessModal } from './SuccessModal';
 export { default as AddImageModal } from './AddImageModal';
+export { default as Header } from './Header';

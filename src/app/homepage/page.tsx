@@ -16,6 +16,7 @@ import { GrRestaurant, GrFormNextLink } from "react-icons/gr";
 import { FaBookOpen, FaPlay, FaEye, FaComment, FaClock } from "react-icons/fa";
 import { HiDocumentText } from "react-icons/hi";
 import { AiOutlinePlaySquare } from "react-icons/ai";
+import { Header } from "@/component/common";
 
 // Interface definitions
 interface Story {
@@ -182,11 +183,7 @@ const Homepage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header Navigation */}
-      <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
-        <nav className="px-8 py-4">
-          <div className="flex items-center justify-between"></div>
-        </nav>
-      </header>
+      <Header currentPage="homepage" />
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center">
