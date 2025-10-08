@@ -54,16 +54,16 @@ const TasteMapPage: React.FC = () => {
             </h1>
           </div>
           <p
-            className="text-base md:text-lg max-w-xl mx-auto mt-6 leading-relaxed px-6 font-normal text-center"
+            className="text-base md:text-lg max-w-4xl mx-auto mt-6 leading-relaxed px-6 font-normal text-center "
             style={{
               color: "rgba(255, 255, 255, 0.8)",
               lineHeight: "1.6",
             }}
           >
             Nền tảng kết nối cộng đồng yêu ẩm thực, nơi mọi người chia sẻ trải
-            nghiệm và khám
+            nghiệm và khám phá
             <br />
-            phá những câu chuyện đặc biệt về món ăn
+            những câu chuyện đặc biệt về món ăn
           </p>
         </div>
       </section>
