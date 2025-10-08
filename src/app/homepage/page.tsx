@@ -1094,7 +1094,7 @@ const Homepage: React.FC = () => {
         <div className="relative z-10 flex flex-col justify-center items-center text-center h-[75vh] px-4">
           {/* Main Headline */}
           <div className="mb-6 text-left -ml-4 md:-ml-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-2 relative left-[-18rem]">
               Tham gia Cộng đồng
             </h2>
             <h2 className="text-4xl md:text-5xl font-bold ml-8 md:ml-16">
