@@ -61,16 +61,22 @@ const Header: React.FC<HeaderProps> = ({ currentPage = "homepage" }) => {
           {/* Action Icons - Far Right */}
           <div className="flex items-center space-x-2 lg:space-x-3 ml-8">
             {/* Settings Icon */}
-            <button className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200">
+            <Link
+              href="/settings"
+              className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200"
+            >
               <TbSettings2 className="w-5 h-5 lg:w-6 lg:h-6" />
-            </button>
+            </Link>
 
             {/* Notification Icon with Red Dot */}
-            <button className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200 relative">
+            <Link
+              href="/notifications"
+              className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200 relative"
+            >
               <IoIosNotificationsOutline className="w-5 h-5 lg:w-6 lg:h-6" />
               {/* Red notification dot */}
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
+            </Link>
 
             {/* Dashboard Icon */}
             <button className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200">

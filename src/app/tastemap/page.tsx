@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Header from "../../component/common/Header";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlineExplore } from "react-icons/md";
@@ -510,21 +511,24 @@ const TasteMapPage: React.FC = () => {
             Hãy bắt đầu hành trình khám phá ẩm thực cùng chúng tôi ngay hôm nay
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 flex items-center gap-2 justify-center"
-              style={{
-                background: "linear-gradient(135deg, #FF6A00 0%, #FF3CAC 100%)",
-              }}
-            >
-              <MdOutlineExplore
-                size={18}
+            <Link href="/explore">
+              <button
+                className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 flex items-center gap-2 justify-center"
                 style={{
-                  color: "#FFFFFF",
-                  flexShrink: 0,
+                  background:
+                    "linear-gradient(135deg, #FF6A00 0%, #FF3CAC 100%)",
                 }}
-              />
-              Khám phá ngay
-            </button>
+              >
+                <MdOutlineExplore
+                  size={18}
+                  style={{
+                    color: "#FFFFFF",
+                    flexShrink: 0,
+                  }}
+                />
+                Khám phá ngay
+              </button>
+            </Link>
             <button
               className="flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 hover:scale-105 justify-center"
               onClick={() => (window.location.href = "/homepage")}

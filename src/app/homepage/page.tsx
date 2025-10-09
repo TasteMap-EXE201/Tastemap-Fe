@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   RiFireLine,
   RiPlayCircleLine,
@@ -278,22 +279,24 @@ const Homepage: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                className="px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:scale-105 flex items-center gap-2"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #FF6A00 0%, #FF3CAC 100%)",
-                }}
-              >
-                <MdOutlineExplore
-                  size={16}
+              <Link href="/explore">
+                <button
+                  className="px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:scale-105 flex items-center gap-2"
                   style={{
-                    color: "#FFFFFF",
-                    flexShrink: 0,
+                    background:
+                      "linear-gradient(135deg, #FF6A00 0%, #FF3CAC 100%)",
                   }}
-                />
-                Khám phá ngay
-              </button>
+                >
+                  <MdOutlineExplore
+                    size={16}
+                    style={{
+                      color: "#FFFFFF",
+                      flexShrink: 0,
+                    }}
+                  />
+                  Khám phá ngay
+                </button>
+              </Link>
               <button
                 className="px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 flex items-center gap-2"
                 style={{
@@ -1052,23 +1055,25 @@ const Homepage: React.FC = () => {
 
         {/* Khám phá Góc đầu bếp Button */}
         <div className="flex justify-center">
-          <button
-            className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 shadow-lg"
-            style={{
-              background: "linear-gradient(90deg, #FF7043 0%, #E53935 100%)",
-              textShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background =
-                "linear-gradient(90deg, #FF8A65 0%, #F44336 100%)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background =
-                "linear-gradient(90deg, #FF7043 0%, #E53935 100%)";
-            }}
-          >
-            Khám phá Góc đầu bếp
-          </button>
+          <Link href="/chef-corner">
+            <button
+              className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 shadow-lg"
+              style={{
+                background: "linear-gradient(90deg, #FF7043 0%, #E53935 100%)",
+                textShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background =
+                  "linear-gradient(90deg, #FF8A65 0%, #F44336 100%)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background =
+                  "linear-gradient(90deg, #FF7043 0%, #E53935 100%)";
+              }}
+            >
+              Khám phá Góc đầu bếp
+            </button>
+          </Link>
         </div>
       </section>
 
