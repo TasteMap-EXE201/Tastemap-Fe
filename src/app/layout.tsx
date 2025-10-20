@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import { ChatbotWidget } from "@/component/common";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -31,6 +32,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         {children}
+        <ChatbotWidget />
       </body>
     </html>
   );
